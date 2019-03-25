@@ -7,7 +7,7 @@ public class Task {
 		System.out.println(print(5));*/
 		//Task.print(5);
 		Task x = new Task();
-		
+		 
 		x.print(5);
 		System.out.println(sum(5));
 	}
@@ -36,9 +36,20 @@ public class Task {
 	}
 	
 	
-	//public static print (int n){
-		
-	//}
+	public static print (int n){
+		int [][] a = [n][];
+		for(int i =0;i<a.length;i++){
+			a[i][0] = 1;
+			a[i][i] = 1;
+			for(int m=1;a[i].length-1;i++){
+				a[i][m] = a[i-1][m] + a[i-1][m-1];
+			}
+		}
+		for (int i =0;i<a.length;i++){
+			System.out.println("");
+			
+		}
+	}
 	/*//µİ¹éËã·¨ÇóºÍ
 	public static int sum(int p){
 		if(p==1){
