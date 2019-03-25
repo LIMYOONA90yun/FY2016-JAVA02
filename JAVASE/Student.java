@@ -1,11 +1,10 @@
-import java.util.Scanner;
+import java.util.Scanner; //导入一个Scanner包
 
 public class Student{
 	
 	public static void main(String[] args){
 		Welcome();//调用登录界面
-		
-
+	
 		Admin[] admins =new Admin[5];//局部变量，只能在main方法里使用
 		initData(admins);//存储的用户名和密码信息，并返回值
 		
@@ -53,34 +52,29 @@ public class Student{
 				Admin admin = admins[i];
 				
 				if(admins[i] == null){
-					continue;
-				}
-				if(username.equals(admins[i].username) && password.equals(admins[i].password)){
+					System.out.println("用户名错误或没有该用户");
+					System.out.println("");
+					Login(admins,stud);
+				}else if(username.equals(admins[i].username) && password.equals(admins[i].password)){
 					System.out.println("登录成功");
 					System.out.println("欢迎您："+admins[i].username);
 					direction(admins,stud);
-					
-				}else if(i==admins.length){
-					System.out.println("用户名错误或没有该用户");
-					Login(admins,stud);
+
 				}	
 		}	
 		}
-		
-		
 		
 		public static void addStudents(Admin[] admins,Students[] stud){
 			System.out.println("****************************添加学生信息******************************");
 			Scanner s = new Scanner(System.in);
 			System.out.print("请输入学生ID：");
 			int id = s.nextInt();
-			
 			for(int i = 0;i<stud.length;i++){
-			if(stud[i].id == id){
+			if(stud[i]==null){
+				break;
+			}else if(stud[i].id ==id){
 				System.out.println("此ID"+id+"存在，请重新输入");
 				addStudents(admins,stud);
-			}else if(stud[i].id != id){
-			break;	
 			}
 			}
 			Scanner s1 = new Scanner(System.in);
@@ -103,11 +97,7 @@ public class Student{
 			direction(admins,stud);
 			
 		}
-		
-		
-		
-		
-		
+	
 		public static void direction(Admin[] admins,Students[] stud){
 			System.out.println("***********************请选择要操作的信息对应数字*************************");
 			System.out.println("*1.查看学生信息  2.添加学生信息  3.删除学生信息  4.修改学生信息  5.退出  *");
@@ -129,15 +119,8 @@ public class Student{
 				System.out.println("输入的值有误，请重新输入。");
 				direction(admins,stud);//如果输入错误循环该方法，递归调用
 			}
-			
 		}
-		
 
-		
-		
-		
-		
-		
 		public static void modify(Admin[] admins,Students[] stud){
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("1.根据ID修改学生全部信息  2.根据ID修改学生部分信息  3.返回上级目录  4.系统退出");
@@ -145,7 +128,6 @@ public class Student{
 			System.out.print("请选择：");
 			Scanner s = new Scanner(System.in);
 			int operation = s.nextInt();
-			
 			if(operation == 1){
 			
 			}else if(operation == 2){
@@ -160,7 +142,6 @@ public class Student{
 			}
 			
 		}
-		
 		
 		public static void part(Admin[] admins,Students[] stud){
 			Scanner s = new Scanner(System.in);
@@ -213,8 +194,6 @@ public class Student{
 			System.out.println("查询完毕系统自动返回上层目录");
 			find(admins,stud);
 		}
-		
-		
 	
 		public static void initData(Admin[] admins){
 			Admin admin = new Admin("admin","admin");
@@ -261,7 +240,7 @@ class Admin{
 	
 }
 class Students{
-	
+	//定义学生类，
 	public int id;
 	public String name;
 	public String sex;
@@ -270,7 +249,7 @@ class Students{
 	public String address;
 	public String phone;
 	public String email;
-	
+	//学生的构造函数
 	public Students(int id,String name,String sex,int age,String _class,String address,String phone,String email){
 		this.id = id;
 		this.name = name;
@@ -282,8 +261,6 @@ class Students{
 		this.email = email;
 		
 	}
-	
-	
 	
 	//获取改变id的值
 	public int getId(){
@@ -341,5 +318,4 @@ class Students{
 	public void setEmail(String email){
 		this.email = email;
 	}
-	
 }
